@@ -1,18 +1,17 @@
 """https://adventofcode.com/{year}/day/{day}"""
 
-from aoc_util.helper import read
+from pathlib import Path
 
 
-def getInput(test: bool):
+def getInput(test: bool = False):
     # READ INPUT
-    if test:
-        data = read("./{year}/inputs/{day}.txt").strip().split("\n")
-    else:
-        data = read("./{year}/inputs/{day}-test.txt").strip().split("\n")
-    # PARSE DATA
-    parsed_input = data
-
-    return parsed_input
+    file_path = (
+        Path("./{year}/inputs/{day}-test.txt")
+        if test
+        else Path("./{year}/inputs/{day}.txt")
+    )
+    data = file_path.read_text().strip().split("\n")
+    return data
 
 
 def main():
