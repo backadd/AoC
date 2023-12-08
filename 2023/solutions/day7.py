@@ -90,15 +90,18 @@ def sort_hands(hands: list):
         if len(sorted_hands) == 0:
             sorted_hands.append(hand)
         else:
-            for i in range(0, len(sorted_hands)):
-                if (hand.type < sorted_hands[i].type) or (
-                    hand.type == sorted_hands[i].type
-                    and tie_break(hand, sorted_hands[i]) == 2
+            left = 0
+            right = len(sorted_hands) - 1
+            while left <= right:
+                mid = (left + right) // 2
+                if (hand.type < sorted_hands[mid].type) or (
+                    hand.type == sorted_hands[mid].type
+                    and tie_break(hand, sorted_hands[mid]) == 2
                 ):
-                    sorted_hands.insert(i, hand)
-                    break
-                elif i == len(sorted_hands) - 1:
-                    sorted_hands.append(hand)
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            sorted_hands.insert(left, hand)
     return sorted_hands
 
 
