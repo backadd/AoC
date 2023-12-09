@@ -15,6 +15,8 @@ def getInput(test: bool = False):
 
 
 def main():
+    data = getInput()
+
     # PART 1
     part_1_answer = None
     print(f"PART 1: {part_1_answer}")
